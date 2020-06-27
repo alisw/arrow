@@ -34,34 +34,79 @@ extern "C" {
   INNER(float32, OUT_TYPE)                    \
   INNER(float64, OUT_TYPE)
 
+#define ENUMERIC_TYPES_UNARY_FLOAT(INNER, OUT_TYPE) \
+  INNER(int32, OUT_TYPE)                      \
+  INNER(uint32, OUT_TYPE)                     \
+  INNER(int64, OUT_TYPE)                      \
+  INNER(uint64, OUT_TYPE)                     \
+  INNER(float32, OUT_TYPE)
+
+// Square root
+#define SQRTF(IN_TYPE, OUT_TYPE)                                          \
+  FORCE_INLINE                                                            \
+  gdv_##OUT_TYPE sqrtf_##IN_TYPE(gdv_##IN_TYPE in) {                      \
+    return static_cast<gdv_float32>(sqrtf(static_cast<float>(in)));       \
+  }
+#define SQRT(IN_TYPE, OUT_TYPE)                                           \
+FORCE_INLINE                                                              \
+gdv_##OUT_TYPE sqrt_##IN_TYPE(gdv_##IN_TYPE in) {                         \
+  return static_cast<gdv_float64>(sqrtl(static_cast<long double>(in)));   \
+}
+
+ENUMERIC_TYPES_UNARY_FLOAT(SQRTF, float32)
+ENUMERIC_TYPES_UNARY(SQRT, float64)
+
 // Cubic root
+#define CBRTF(IN_TYPE, OUT_TYPE)                                          \
+  FORCE_INLINE                                                            \
+  gdv_##OUT_TYPE cbrtf_##IN_TYPE(gdv_##IN_TYPE in) {                      \
+    return static_cast<gdv_float32>(cbrtf(static_cast<float>(in)));       \
+  }
 #define CBRT(IN_TYPE, OUT_TYPE)                                           \
   FORCE_INLINE                                                            \
   gdv_##OUT_TYPE cbrt_##IN_TYPE(gdv_##IN_TYPE in) {                       \
     return static_cast<gdv_float64>(cbrtl(static_cast<long double>(in))); \
   }
 
+ENUMERIC_TYPES_UNARY_FLOAT(CBRTF, float32)
 ENUMERIC_TYPES_UNARY(CBRT, float64)
 
 // Exponent
+#define EXPF(IN_TYPE, OUT_TYPE)                                          \
+  FORCE_INLINE                                                           \
+  gdv_##OUT_TYPE expf_##IN_TYPE(gdv_##IN_TYPE in) {                      \
+    return static_cast<gdv_float32>(expf(static_cast<float>(in)));       \
+  }
 #define EXP(IN_TYPE, OUT_TYPE)                                           \
   FORCE_INLINE                                                           \
   gdv_##OUT_TYPE exp_##IN_TYPE(gdv_##IN_TYPE in) {                       \
     return static_cast<gdv_float64>(expl(static_cast<long double>(in))); \
   }
 
+ENUMERIC_TYPES_UNARY_FLOAT(EXPF, float32)
 ENUMERIC_TYPES_UNARY(EXP, float64)
 
 // log
+#define LOGF(IN_TYPE, OUT_TYPE)                                          \
+  FORCE_INLINE                                                           \
+  gdv_##OUT_TYPE logf_##IN_TYPE(gdv_##IN_TYPE in) {                      \
+    return static_cast<gdv_float32>(logf(static_cast<float>(in)));       \
+  }
 #define LOG(IN_TYPE, OUT_TYPE)                                           \
   FORCE_INLINE                                                           \
   gdv_##OUT_TYPE log_##IN_TYPE(gdv_##IN_TYPE in) {                       \
     return static_cast<gdv_float64>(logl(static_cast<long double>(in))); \
   }
 
+ENUMERIC_TYPES_UNARY_FLOAT(LOGF, float32)
 ENUMERIC_TYPES_UNARY(LOG, float64)
 
 // log base 10
+#define LOG10F(IN_TYPE, OUT_TYPE)                                          \
+  FORCE_INLINE                                                             \
+  gdv_##OUT_TYPE log10f_##IN_TYPE(gdv_##IN_TYPE in) {                      \
+    return static_cast<gdv_float32>(log10f(static_cast<float>(in)));       \
+  }
 #define LOG10(IN_TYPE, OUT_TYPE)                                           \
   FORCE_INLINE                                                             \
   gdv_##OUT_TYPE log10_##IN_TYPE(gdv_##IN_TYPE in) {                       \
@@ -70,7 +115,99 @@ ENUMERIC_TYPES_UNARY(LOG, float64)
 
 #define LOGL(VALUE) static_cast<gdv_float64>(logl(static_cast<long double>(VALUE)))
 
+ENUMERIC_TYPES_UNARY_FLOAT(LOG10F, float32)
 ENUMERIC_TYPES_UNARY(LOG10, float64)
+
+// Trigonometric functions
+// Sine
+#define SINF(IN_TYPE, OUT_TYPE)                                          \
+  FORCE_INLINE                                                           \
+  gdv_##OUT_TYPE sinf_##IN_TYPE(gdv_##IN_TYPE in) {                      \
+    return static_cast<gdv_float32>(sinf(static_cast<float>(in)));       \
+  }
+#define SIN(IN_TYPE, OUT_TYPE)                                           \
+  FORCE_INLINE                                                           \
+  gdv_##OUT_TYPE sin_##IN_TYPE(gdv_##IN_TYPE in) {                       \
+    return static_cast<gdv_float64>(sinl(static_cast<long double>(in))); \
+  }
+
+ENUMERIC_TYPES_UNARY_FLOAT(SINF, float32)
+ENUMERIC_TYPES_UNARY(SIN, float64)
+
+// Cosine
+#define COSF(IN_TYPE, OUT_TYPE)                                          \
+  FORCE_INLINE                                                           \
+  gdv_##OUT_TYPE cosf_##IN_TYPE(gdv_##IN_TYPE in) {                      \
+    return static_cast<gdv_float32>(cosf(static_cast<float>(in)));       \
+  }
+#define COS(IN_TYPE, OUT_TYPE)                                           \
+  FORCE_INLINE                                                           \
+  gdv_##OUT_TYPE cos_##IN_TYPE(gdv_##IN_TYPE in) {                       \
+    return static_cast<gdv_float64>(cosl(static_cast<long double>(in))); \
+  }
+
+ENUMERIC_TYPES_UNARY_FLOAT(COSF, float32)
+ENUMERIC_TYPES_UNARY(COS, float64)
+
+// Tangent
+#define TANF(IN_TYPE, OUT_TYPE)                                          \
+  FORCE_INLINE                                                           \
+  gdv_##OUT_TYPE tanf_##IN_TYPE(gdv_##IN_TYPE in) {                      \
+    return static_cast<gdv_float32>(tanf(static_cast<float>(in)));       \
+  }
+#define TAN(IN_TYPE, OUT_TYPE)                                           \
+  FORCE_INLINE                                                           \
+  gdv_##OUT_TYPE tan_##IN_TYPE(gdv_##IN_TYPE in) {                       \
+    return static_cast<gdv_float64>(tanl(static_cast<long double>(in))); \
+  }
+
+ENUMERIC_TYPES_UNARY_FLOAT(TANF, float32)
+ENUMERIC_TYPES_UNARY(TAN, float64)
+
+// Arc sine
+#define ASINF(IN_TYPE, OUT_TYPE)                                          \
+  FORCE_INLINE                                                           \
+  gdv_##OUT_TYPE asinf_##IN_TYPE(gdv_##IN_TYPE in) {                      \
+    return static_cast<gdv_float32>(asinf(static_cast<float>(in)));       \
+  }
+#define ASIN(IN_TYPE, OUT_TYPE)                                           \
+  FORCE_INLINE                                                           \
+  gdv_##OUT_TYPE asin_##IN_TYPE(gdv_##IN_TYPE in) {                       \
+    return static_cast<gdv_float64>(asinl(static_cast<long double>(in))); \
+  }
+
+ENUMERIC_TYPES_UNARY_FLOAT(ASINF, float32)
+ENUMERIC_TYPES_UNARY(ASIN, float64)
+
+// Arc cosine
+#define ACOSF(IN_TYPE, OUT_TYPE)                                          \
+  FORCE_INLINE                                                           \
+  gdv_##OUT_TYPE acosf_##IN_TYPE(gdv_##IN_TYPE in) {                      \
+    return static_cast<gdv_float32>(acosf(static_cast<float>(in)));       \
+  }
+#define ACOS(IN_TYPE, OUT_TYPE)                                           \
+  FORCE_INLINE                                                           \
+  gdv_##OUT_TYPE acos_##IN_TYPE(gdv_##IN_TYPE in) {                       \
+    return static_cast<gdv_float64>(acosl(static_cast<long double>(in))); \
+  }
+
+ENUMERIC_TYPES_UNARY_FLOAT(ACOSF, float32)
+ENUMERIC_TYPES_UNARY(ACOS, float64)
+
+// Arc tangent
+#define ATANF(IN_TYPE, OUT_TYPE)                                          \
+  FORCE_INLINE                                                           \
+  gdv_##OUT_TYPE atanf_##IN_TYPE(gdv_##IN_TYPE in) {                      \
+    return static_cast<gdv_float32>(atanf(static_cast<float>(in)));       \
+  }
+#define ATAN(IN_TYPE, OUT_TYPE)                                           \
+  FORCE_INLINE                                                           \
+  gdv_##OUT_TYPE atan_##IN_TYPE(gdv_##IN_TYPE in) {                       \
+    return static_cast<gdv_float64>(atanl(static_cast<long double>(in))); \
+  }
+
+ENUMERIC_TYPES_UNARY_FLOAT(ATANF, float32)
+ENUMERIC_TYPES_UNARY(ATAN, float64)
 
 FORCE_INLINE
 void set_error_for_logbase(int64_t execution_context, double base) {
@@ -103,13 +240,32 @@ LOG_WITH_BASE(float32, float32, float64)
 LOG_WITH_BASE(float64, float64, float64)
 
 // power
-#define POWER(IN_TYPE1, IN_TYPE2, OUT_TYPE)                                              \
-  FORCE_INLINE                                                                           \
-  gdv_##OUT_TYPE power_##IN_TYPE1##_##IN_TYPE2(gdv_##IN_TYPE1 in1, gdv_##IN_TYPE2 in2) { \
-    return static_cast<gdv_float64>(powl(in1, in2));                                     \
+#define POWERF(IN_TYPE1, IN_TYPE2, OUT_TYPE)                                              \
+  FORCE_INLINE                                                                            \
+  gdv_##OUT_TYPE powerf_##IN_TYPE1##_##IN_TYPE2(gdv_##IN_TYPE1 in1, gdv_##IN_TYPE2 in2) { \
+    return static_cast<gdv_float32>(powf(in1, in2));                                      \
+  }
+#define POWER(IN_TYPE1, IN_TYPE2, OUT_TYPE)                                               \
+  FORCE_INLINE                                                                            \
+  gdv_##OUT_TYPE power_##IN_TYPE1##_##IN_TYPE2(gdv_##IN_TYPE1 in1, gdv_##IN_TYPE2 in2) {  \
+    return static_cast<gdv_float64>(powl(in1, in2));                                      \
   }
 
+POWERF(float32, float32, float32)
 POWER(float64, float64, float64)
+
+// ABS
+#define ABSF(IN_TYPE, OUT_TYPE)                                     \
+  FORCE_INLINE                                                      \
+  gdv_##OUT_TYPE absf_##IN_TYPE(gdv_##IN_TYPE in) {                           \
+    if (static_cast<gdv_##IN_TYPE>(in) < 0) {                       \
+      return static_cast<gdv_##OUT_TYPE>(-in);                      \
+    } else {                                                        \
+      return static_cast<gdv_##OUT_TYPE>(in);                       \
+    }                                                               \
+  }
+
+ABSF(float32,float32)
 
 FORCE_INLINE
 gdv_int64 truncate_int64_int32(gdv_int64 in, gdv_int32 out_scale) {
