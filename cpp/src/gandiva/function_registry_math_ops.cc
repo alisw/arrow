@@ -16,6 +16,7 @@
 // under the License.
 
 #include "gandiva/function_registry_math_ops.h"
+
 #include "gandiva/function_registry_common.h"
 
 namespace gandiva {
@@ -28,9 +29,9 @@ namespace gandiva {
       UNARY_SAFE_NULL_IF_NULL(name, ALIASES, float32, float64), \
       UNARY_SAFE_NULL_IF_NULL(name, ALIASES, float64, float64)
 
-#define MATH_UNARY_OPS_FLOAT(name, ALIASES)                     \
-  UNARY_SAFE_NULL_IF_NULL(name, ALIASES, int32, float32),       \
-      UNARY_SAFE_NULL_IF_NULL(name, ALIASES, uint32, float32),  \
+#define MATH_UNARY_OPS_FLOAT(name, ALIASES)                    \
+  UNARY_SAFE_NULL_IF_NULL(name, ALIASES, int32, float32),      \
+      UNARY_SAFE_NULL_IF_NULL(name, ALIASES, uint32, float32), \
       UNARY_SAFE_NULL_IF_NULL(name, ALIASES, float32, float32)
 
 #define MATH_BINARY_UNSAFE(name, ALIASES)                          \
@@ -50,15 +51,11 @@ namespace gandiva {
 std::vector<NativeFunction> GetMathOpsFunctionRegistry() {
   static std::vector<NativeFunction> math_fn_registry_ = {
       MATH_UNARY_OPS(cbrt, {}), MATH_UNARY_OPS(exp, {}), MATH_UNARY_OPS(log, {}),
-      MATH_UNARY_OPS(log10, {}), MATH_UNARY_OPS(sqrt, {}), MATH_UNARY_OPS(sin, {}),
-      MATH_UNARY_OPS(cos, {}), MATH_UNARY_OPS(tan, {}), MATH_UNARY_OPS(asin, {}),
-      MATH_UNARY_OPS(acos, {}), MATH_UNARY_OPS(atan, {}),
+      MATH_UNARY_OPS(log10, {}), MATH_UNARY_OPS(sqrt, {}),
 
       MATH_UNARY_OPS_FLOAT(sqrtf, {}), MATH_UNARY_OPS_FLOAT(cbrtf, {}),
       MATH_UNARY_OPS_FLOAT(expf, {}), MATH_UNARY_OPS_FLOAT(logf, {}),
-      MATH_UNARY_OPS_FLOAT(log10f, {}), MATH_UNARY_OPS_FLOAT(sinf, {}),
-      MATH_UNARY_OPS_FLOAT(cosf, {}), MATH_UNARY_OPS_FLOAT(tanf, {}), MATH_UNARY_OPS_FLOAT(asinf, {}),
-      MATH_UNARY_OPS_FLOAT(acosf, {}), MATH_UNARY_OPS_FLOAT(atanf, {}),
+      MATH_UNARY_OPS_FLOAT(log10f, {}),
 
       MATH_BINARY_UNSAFE(log, {}),
 
@@ -96,6 +93,8 @@ std::vector<NativeFunction> GetMathOpsFunctionRegistry() {
 }
 
 #undef MATH_UNARY_OPS
+
+#undef MATH_UNARY_OPS_FLOAT
 
 #undef MATH_BINARY_UNSAFE
 
