@@ -102,6 +102,10 @@ std::vector<NativeFunction> GetArithmeticFunctionRegistry() {
       BINARY_SYMMETRIC_SAFE_NULL_IF_NULL(bitwise_xor, {}, uint16),
       UNARY_SAFE_NULL_IF_NULL(bitwise_not, {}, int32, int32),
       UNARY_SAFE_NULL_IF_NULL(bitwise_not, {}, int64, int64),
+      UNARY_SAFE_NULL_IF_NULL(bitwise_not, {}, uint32, uint32),
+      UNARY_SAFE_NULL_IF_NULL(bitwise_not, {}, uint64, uint64),
+      UNARY_SAFE_NULL_IF_NULL(bitwise_not, {}, uint16, uint16),
+      UNARY_SAFE_NULL_IF_NULL(bitwise_not, {}, uint8, uint8),
 
       // round functions
       UNARY_SAFE_NULL_IF_NULL(round, {}, float32, float32),

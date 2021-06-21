@@ -18,7 +18,6 @@
 extern "C" {
 
 #include <math.h>
-
 #include "./types.h"
 
 // Expand inner macro for all numeric types.
@@ -263,6 +262,10 @@ DIV_FLOAT(float64)
 
 BITWISE_NOT(int32)
 BITWISE_NOT(int64)
+BITWISE_NOT(uint64)
+BITWISE_NOT(uint32)
+BITWISE_NOT(uint16)
+BITWISE_NOT(uint8)
 
 #undef BITWISE_NOT
 

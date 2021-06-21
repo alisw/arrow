@@ -18,7 +18,6 @@
 #pragma once
 
 #include <cstdint>
-
 #include "gandiva/gdv_function_stubs.h"
 
 // Use the same names as in arrow data types. Makes it easy to write pre-processor macros.
@@ -210,6 +209,29 @@ gdv_float64 atan2_float32_float32(gdv_float32 in1, gdv_float32 in2);
 gdv_float64 atan2_float64_float64(gdv_float64 in1, gdv_float64 in2);
 gdv_float64 cot_float32(gdv_float32);
 gdv_float64 cot_float64(gdv_float64);
+
+gdv_float32 sinf_int32(gdv_int32);
+gdv_float32 sinf_float32(gdv_float32);
+gdv_float32 cosf_int32(gdv_int32);
+gdv_float32 cosf_float32(gdv_float32);
+gdv_float32 asinf_int32(gdv_int32);
+gdv_float32 asinf_float32(gdv_float32);
+gdv_float32 acosf_int32(gdv_int32);
+gdv_float32 acosf_float32(gdv_float32);
+gdv_float32 tanf_int32(gdv_int32);
+gdv_float32 tanf_float32(gdv_float32);
+gdv_float32 atanf_int32(gdv_int32);
+gdv_float32 atanf_float32(gdv_float32);
+gdv_float32 sinhf_int32(gdv_int32);
+gdv_float32 sinhf_float32(gdv_float32);
+gdv_float32 coshf_int32(gdv_int32);
+gdv_float32 coshf_float32(gdv_float32);
+gdv_float32 tanhf_int32(gdv_int32);
+gdv_float32 tanhf_float32(gdv_float32);
+gdv_float32 atan2f_int32_int32(gdv_int32 in1, gdv_int32 in2);
+gdv_float32 atan2f_float32_float32(gdv_float32 in1, gdv_float32 in2);
+gdv_float32 cotf_float32(gdv_float32);
+
 gdv_float64 radians_int32(gdv_int32);
 gdv_float64 radians_int64(gdv_int64);
 gdv_float64 radians_float32(gdv_float32);
@@ -227,6 +249,23 @@ gdv_int32 bitwise_xor_int32_int32(gdv_int32 in1, gdv_int32 in2);
 gdv_int64 bitwise_xor_int64_int64(gdv_int64 in1, gdv_int64 in2);
 gdv_int32 bitwise_not_int32(gdv_int32);
 gdv_int64 bitwise_not_int64(gdv_int64);
+gdv_uint32 bitwise_and_uint32_uint32(gdv_uint32 in1, gdv_uint32 in2);
+gdv_uint64 bitwise_and_uint64_uint64(gdv_uint64 in1, gdv_uint64 in2);
+gdv_uint32 bitwise_or_uint32_uint32(gdv_uint32 in1, gdv_uint32 in2);
+gdv_uint64 bitwise_or_uint64_uint64(gdv_uint64 in1, gdv_uint64 in2);
+gdv_uint32 bitwise_xor_uint32_uint32(gdv_uint32 in1, gdv_uint32 in2);
+gdv_uint64 bitwise_xor_uint64_uint64(gdv_uint64 in1, gdv_uint64 in2);
+gdv_uint16 bitwise_and_uint16_uint16(gdv_uint16 in1, gdv_uint16 in2);
+gdv_uint8 bitwise_and_uint8_uint8(gdv_uint8 in1, gdv_uint8 in2);
+gdv_uint16 bitwise_or_uint16_uint16(gdv_uint16 in1, gdv_uint16 in2);
+gdv_uint8 bitwise_or_uint8_uint8(gdv_uint8 in1, gdv_uint8 in2);
+gdv_uint16 bitwise_xor_uint16_uint16(gdv_uint16 in1, gdv_uint16 in2);
+gdv_uint8 bitwise_xor_uint8_uint8(gdv_uint8 in1, gdv_uint8 in2);
+gdv_uint32 bitwise_not_uint32(gdv_uint32);
+gdv_uint64 bitwise_not_uint64(gdv_uint64);
+gdv_uint16 bitwise_not_uint16(gdv_uint16);
+gdv_uint8 bitwise_not_uint8(gdv_uint8);
+
 gdv_float32 sqrtf_int32(gdv_int32);
 gdv_float32 sqrtf_int64(gdv_int64);
 gdv_float32 sqrtf_float32(gdv_float32);
@@ -246,60 +285,6 @@ gdv_float32 logf_float32(gdv_float32);
 gdv_float32 log10f_int32(gdv_int32);
 gdv_float32 log10f_int64(gdv_int64);
 gdv_float32 log10f_float32(gdv_float32);
-
-gdv_float64 sin_int32(gdv_int32);
-gdv_float64 sin_int64(gdv_int64);
-gdv_float64 sin_float32(gdv_float32);
-gdv_float64 sin_float64(gdv_float64);
-
-gdv_float64 cos_int32(gdv_int32);
-gdv_float64 cos_int64(gdv_int64);
-gdv_float64 cos_float32(gdv_float32);
-gdv_float64 cos_float64(gdv_float64);
-
-gdv_float64 tan_int32(gdv_int32);
-gdv_float64 tan_int64(gdv_int64);
-gdv_float64 tan_float32(gdv_float32);
-gdv_float64 tan_float64(gdv_float64);
-
-gdv_float64 asin_int32(gdv_int32);
-gdv_float64 asin_int64(gdv_int64);
-gdv_float64 asin_float32(gdv_float32);
-gdv_float64 asin_float64(gdv_float64);
-
-gdv_float64 acos_int32(gdv_int32);
-gdv_float64 acos_int64(gdv_int64);
-gdv_float64 acos_float32(gdv_float32);
-gdv_float64 acos_float64(gdv_float64);
-
-gdv_float64 atan_int32(gdv_int32);
-gdv_float64 atan_int64(gdv_int64);
-gdv_float64 atan_float32(gdv_float32);
-gdv_float64 atan_float64(gdv_float64);
-
-gdv_float32 sinf_int32(gdv_int32);
-gdv_float32 sinf_int64(gdv_int64);
-gdv_float32 sinf_float32(gdv_float32);
-
-gdv_float32 cosf_int32(gdv_int32);
-gdv_float32 cosf_int64(gdv_int64);
-gdv_float32 cosf_float32(gdv_float32);
-
-gdv_float32 tanf_int32(gdv_int32);
-gdv_float32 tanf_int64(gdv_int64);
-gdv_float32 tanf_float32(gdv_float32);
-
-gdv_float32 asinf_int32(gdv_int32);
-gdv_float32 asinf_int64(gdv_int64);
-gdv_float32 asinf_float32(gdv_float32);
-
-gdv_float32 acosf_int32(gdv_int32);
-gdv_float32 acosf_int64(gdv_int64);
-gdv_float32 acosf_float32(gdv_float32);
-
-gdv_float32 atanf_int32(gdv_int32);
-gdv_float32 atanf_int64(gdv_int64);
-gdv_float32 atanf_float32(gdv_float32);
 
 gdv_float64 power_float64_float64(gdv_float64, gdv_float64);
 
