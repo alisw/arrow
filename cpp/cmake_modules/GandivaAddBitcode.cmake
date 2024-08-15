@@ -42,6 +42,7 @@ function(gandiva_add_bitcode SOURCE)
          env
          SDKROOT=${CMAKE_OSX_SYSROOT})
   endif()
+
   list(APPEND
        PRECOMPILE_COMMAND
        ${CLANG_EXECUTABLE}
@@ -58,6 +59,11 @@ function(gandiva_add_bitcode SOURCE)
        -o
        ${BC_FILE}
        ${ARROW_GANDIVA_PC_CXX_FLAGS})
+  if(GCC_TOOLCHAIN_ROOT)
+    list(APPEND
+         PRECOMPILE_COMMAND
+         --gcc-install-dir="${GCC_TOOLCHAIN_ROOT}")
+  endif()
   if(ARROW_BINARY_DIR)
     list(APPEND PRECOMPILE_COMMAND -I${ARROW_BINARY_DIR}/src)
   endif()
