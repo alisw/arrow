@@ -62,7 +62,8 @@ function(gandiva_add_bitcode SOURCE)
   if(GCC_TOOLCHAIN_ROOT)
     list(APPEND
          PRECOMPILE_COMMAND
-         --gcc-install-dir="$GCC_TOOLCHAIN_ROOT")
+         --gcc-install-dir
+         ${GCC_TOOLCHAIN_ROOT})
   endif()
   if(ARROW_BINARY_DIR)
     list(APPEND PRECOMPILE_COMMAND -I${ARROW_BINARY_DIR}/src)
