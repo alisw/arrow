@@ -267,13 +267,13 @@ list(APPEND PARQUET_STATIC_LINK_LIBS RapidJSON)
 
 # These are libraries that we will link privately with parquet_shared (as they
 # do not need to be linked transitively by other linkers)
-list(APPEND PARQUET_SHARED_PRIVATE_LINK_LIBS thrift::thrift)
+list(APPEND PARQUET_SHARED_PRIVATE_LINK_LIBS thrift::thrift Boost::headers)
 
 # Link publicly with parquet_static (because internal users need to
 # transitively link all dependencies)
-list(APPEND PARQUET_STATIC_LINK_LIBS thrift::thrift)
+list(APPEND PARQUET_STATIC_LINK_LIBS thrift::thrift Boost::headers)
 if(NOT THRIFT_VENDORED)
-  list(APPEND PARQUET_STATIC_INSTALL_INTERFACE_LIBS thrift::thrift)
+  list(APPEND PARQUET_STATIC_INSTALL_INTERFACE_LIBS thrift::thrift Boost::headers)
 endif()
 
 if(ARROW_WITH_OPENTELEMETRY)
