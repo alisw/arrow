@@ -432,9 +432,9 @@ Status LLVMGenerator::CodeGenExprValue(DexPtr value_expr, int buffer_count,
   }
 
   // check loop_var
-  loop_var->addIncoming(types()->i64_constant(0), loop_entry);
+  loop_var->addIncoming(types()->i64_constant((int64_t)0), loop_entry);
   llvm::Value* loop_update =
-      builder->CreateAdd(loop_var, types()->i64_constant(1), "loop_var+1");
+      builder->CreateAdd(loop_var, types()->i64_constant((int64_t)1), "loop_var+1");
   loop_var->addIncoming(loop_update, loop_body_tail);
 
   llvm::Value* loop_var_check =
@@ -648,7 +648,7 @@ void LLVMGenerator::Visitor::Visit(const VectorReadVarLenValueDex& dex) {
 
   // => offset_end = offsets[loop_var + 1]
   llvm::Value* offsets_slot_index_next = builder->CreateAdd(
-      offsets_slot_index, generator_->types()->i64_constant(1), "loop_var+1");
+      offsets_slot_index, generator_->types()->i64_constant((int64_t)1), "loop_var+1");
   slot = builder->CreateGEP(types->i32_type(), offsets_slot_ref, offsets_slot_index_next);
   auto offset_end = builder->CreateLoad(types->i32_type(), slot, "offset_end");
 

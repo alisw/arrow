@@ -73,7 +73,7 @@ class GANDIVA_EXPORT LLVMTypes {
 
   template <typename ctype, size_t N = (sizeof(ctype) * CHAR_BIT)>
   llvm::Constant* int_constant(ctype val) {
-    return llvm::ConstantInt::get(context_, llvm::APInt(N, val));
+    return llvm::ConstantInt::get(context_, llvm::APInt(N, static_cast<uint64_t>(val), std::is_signed_v<ctype>));
   }
 
   llvm::Constant* i1_constant(bool val) { return int_constant<bool, 1>(val); }
@@ -81,6 +81,10 @@ class GANDIVA_EXPORT LLVMTypes {
   llvm::Constant* i16_constant(int16_t val) { return int_constant(val); }
   llvm::Constant* i32_constant(int32_t val) { return int_constant(val); }
   llvm::Constant* i64_constant(int64_t val) { return int_constant(val); }
+  llvm::Constant* i8_constant(uint8_t val) { return int_constant(val); }
+  llvm::Constant* i16_constant(uint16_t val) { return int_constant(val); }
+  llvm::Constant* i32_constant(uint32_t val) { return int_constant(val); }
+  llvm::Constant* i64_constant(uint64_t val) { return int_constant(val); }
   llvm::Constant* i128_constant(int64_t val) { return int_constant<int64_t, 128>(val); }
 
   llvm::Constant* true_constant() { return i1_constant(true); }
